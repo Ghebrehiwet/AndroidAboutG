@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/back"
+    tools:context="com.example.fiori.aboutme.SecondActivity">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+
+        <ImageView
+            android:id="@+id/myImg"
+            android:layout_width="match_parent"
+            android:layout_height="142dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="@android:dimen/app_icon_size"
+            android:baselineAlignBottom="false"
+            app:srcCompat="@drawable/me" />
+
+
+        <TextView
+            android:id="@+id/aboutMe"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:includeFontPadding="false"
+            android:padding="16dp"
+            android:text="@string/whoAmI"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/textViewReveiver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30dp"
+            android:layout_weight="0.85"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/colorPurple"
+            android:textSize="30sp" />
+
+
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
