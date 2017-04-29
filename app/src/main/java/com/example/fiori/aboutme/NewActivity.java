@@ -16,19 +16,25 @@ public class NewActivity extends AppCompatActivity {
 //    LinearLayoutManager mLinearLayoutManager;
     RecyclerView.Adapter recyclerViewAdapter;
     RecyclerView.LayoutManager recylerViewLayoutManager;
-    String[] subjects =
+    String[][] subjects =
             {
-                    "ANDROID",
-                    "PHP",
-                    "BLOGGER",
-                    "WORDPRESS",
-                    "JOOMLA",
-                    "ASP.NET",
-                    "JAVA",
-                    "C++",
-                    "MATHS",
-                    "HINDI",
-                    "ENGLISH"};
+                    { "ANDROID", "1" },
+                    { "PHP", "2" },
+                    { "JSON", "3" },
+                    { "SWIFT", "4" },
+                    { "OBJECTIVE-C", "5" },
+                    { "SQL", "" },
+                    { "JAVA", "" },
+                    { "JAVASCRIPT", "" },
+                    { "REACT", "" },
+                    { "PYTHON", "" },
+                    { "ANGULAR", "" },
+                    { "JQUERY", "" },
+                    { "CANVAS", "" },
+                    { "D3", "" },
+                    { "MATPLOTLIB", "" },
+                    { "NODE", "" }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
