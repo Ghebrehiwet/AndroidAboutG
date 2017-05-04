@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.fiori.aboutme.NewActivity">
 
+    <include layout="@layout/toolbar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview1"
