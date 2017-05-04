@@ -6,4 +6,10 @@
         I am full time student, father of three, and Full time worker. I am excited to take Android Development. </string>
 
     <string name="whatIDo">Full time student at NSC doing BAS</string>
+    <string name="textview">This is my app that reflects the skills that I am learning in Android Development</string>
+    <string name="menu_action_recycler">Recycler</string>
+    <string name="menu_action_about">About</string>
+    <string name="menu_action_me">Me</string>
+    <string name="dialog_title">My Beautiful App</string>
+    <string name="dialog_message">Welcome to my beautiful app! It is such a very zero draft app! Enjoy!</string>
 </resources>
