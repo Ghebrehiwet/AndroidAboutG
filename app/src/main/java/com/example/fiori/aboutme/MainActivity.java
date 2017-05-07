@@ -20,8 +20,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
+
+        final TextView tv = (TextView) findViewById(R.id.tv);
 
 
         //Upon click each element of the gridview (except the first one that has to take us to another activity where
@@ -71,36 +76,133 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
 
-                mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
+//                mBuilder.setIcon(android.R.drawable.ic_menu_preferences);
+//
+//                mBuilder.setTitle(R.string.dialog_title);
+//
+//                mBuilder.setMessage(R.string.dialog_message);
 
-                mBuilder.setTitle(R.string.dialog_title);
 
-                mBuilder.setMessage(R.string.dialog_message);
 
+
+                // String array for alert dialog multi choice items
+                String[] colors = new String[]{
+                        "Red",
+                        "Green",
+                        "Blue",
+                        "Purple",
+                        "Olive"
+                };
+
+                // Boolean array for initial selected items
+                final boolean[] checkedColors = new boolean[]{
+                        false, // Red
+                        true, // Green
+                        false, // Blue
+                        true, // Purple
+                        false // Olive
+
+                };
+
+                // Convert the color array to list
+                final List<String> colorsList = Arrays.asList(colors);
+
+                // Set multiple choice items for alert dialog
+
+
+//                        This method will be invoked when an item in the dialog is clicked.
+//
+//                        Parameters
+//                        dialog The dialog where the selection was made.
+//                        which The position of the item in the list that was clicked.
+//                        isChecked True if the click checked the item, else false.
+//                 */
+                mBuilder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+                        // Update the current focused item's checked status
+                        checkedColors[which] = isChecked;
+
+                        // Get the current focused item
+                        String currentItem = colorsList.get(which);
+
+                        // Notify the current action
+                        Toast.makeText(getApplicationContext(),
+                                currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // Specify the dialog is not cancelable
                 mBuilder.setCancelable(false);
 
+                // Set a title for alert dialog
+                mBuilder.setTitle("Your preferred colors?");
+
+                // Set the positive/yes button click listener
                 mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "An OK is Positive");
+                        // Do something when click positive button
+                        tv.setText("Your preferred colors..... \n");
+                        for (int i = 0; i<checkedColors.length; i++){
+                            boolean checked = checkedColors[i];
+                            if (checked) {
+                                tv.setText(tv.getText() + colorsList.get(i) + "\n");
+                                Log.d(TAG, "Your preferred colors are " +  colorsList.get(i)  );
+                            }
+                        }
                     }
                 });
 
-                mBuilder.setNeutralButton("Neutral", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "A Neutral is Impartial");
-                    }
-                });
-
+                // Set the negative/no button click listener
                 mBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "A No is No");
+                        // Do something when click the negative button
+                        dialog.dismiss();
+                        Toast.makeText(MainActivity.this, "A No has been clicked", Toast.LENGTH_SHORT).show();
+
                     }
                 });
+
+                // Set the neutral/cancel button click listener
+                mBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when click the neutral button
+                        dialog.cancel();
+                        Toast.makeText(MainActivity.this, "A cancel has been clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+
+//                mBuilder.setCancelable(false);
+//
+//                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Log.d(TAG, "An OK is Positive");
+//                    }
+//                });
+//
+//                mBuilder.setNeutralButton("Neutral", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Log.d(TAG, "A Neutral is Impartial");
+//                    }
+//                });
+//
+//                mBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Log.d(TAG, "A No is No");
+//                    }
+//                });
 
                 //for the dialog to display, we have to first create and then show it
                 AlertDialog alertDialog = mBuilder.create();
