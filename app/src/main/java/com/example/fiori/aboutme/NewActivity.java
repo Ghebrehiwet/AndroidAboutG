@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
+import static com.example.fiori.aboutme.R.styleable.RecyclerView;
+import static com.example.fiori.aboutme.R.styleable.RecyclerView;
+
 public class NewActivity extends AppCompatActivity {
 
     Context context;
@@ -46,8 +49,10 @@ public class NewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_new);
 
+        //Toolbar displays the navigation
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -63,6 +68,9 @@ public class NewActivity extends AppCompatActivity {
         recyclerViewAdapter = new RecyclerViewAdapter(context, subjects);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

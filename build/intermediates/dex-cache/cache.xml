@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\Fiori\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.5.2\ecf534dba3a8446ce84cbb797d314763be212a68\glide-3.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
+        <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.5.2_403fd77e53041196da41228949585e04e9f2d7a3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -16,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="80fc612260e782df09a4e88fe8e4623caf3935d1">
+        sha1="27d4eb457e31748d9830de45ef0e112b226a9b6f">
         <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a1bddff0615805e77e11ef7c758c2bd3ce03e1a1\classes.dex" />
     </item>
 
