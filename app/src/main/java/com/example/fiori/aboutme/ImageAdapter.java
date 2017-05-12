@@ -1,5 +1,4 @@
 package com.example.fiori.aboutme;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
