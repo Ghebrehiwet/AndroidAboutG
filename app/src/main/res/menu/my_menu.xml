@@ -28,6 +28,13 @@
         android:title="Recycler2"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/action_map"
+        android:title="map"
+        app:showAsAction="ifRoom"/>
+
+
+
 
 
 </menu>
