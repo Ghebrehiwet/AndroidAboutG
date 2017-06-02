@@ -260,6 +260,11 @@ public class MainActivity extends AppCompatActivity {
              startActivity(new Intent(MainActivity.this, DataActivity.class));
 
          }
+
+         if(item.getItemId() == R.id.action_map){
+             startActivity(new Intent(MainActivity.this, MapsActivity.class));
+
+         }
         return super.onOptionsItemSelected(item);
      }
 

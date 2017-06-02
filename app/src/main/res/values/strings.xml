@@ -12,4 +12,20 @@
     <string name="menu_action_me">Me</string>
     <string name="dialog_title">My Beautiful App</string>
     <string name="dialog_message">Welcome to my beautiful app! It is such a very zero draft app! Enjoy!</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_fetch_address_intent_service">FetchAddressIntentService</string>
+
+    <string name="label_latitude">Latitude</string>
+    <string name="label_longitude">Longitude</string>
+    <string name="label_location">Location</string>
+    <string name="no_location_data">No Location Data</string>
+    <string name="service_not_available">Service unavailable</string>
+    <string name="address_found">Address found</string>
+    <string name="no_address_found">No address found</string>
+    <string name="invalid_lat_long_used">Invalid Lat/Long</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
