@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,7 +32,7 @@ import android.os.ResultReceiver;
 import android.os.Handler;
 import android.widget.Toast;
 
-public class MapsActivity extends AppCompatActivity implements ConnectionCallbacks, OnMapReadyCallback, OnConnectionFailedListener {
+public class MapsActivity extends AppCompatActivity implements ConnectionCallbacks, OnMapReadyCallback, OnConnectionFailedListener, LocationListener {
 
 //    private GoogleMap mMap;
 
@@ -41,8 +43,11 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
 
 
     private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
     private Location mLastLocation;
     private GoogleMap mMap;
+
+    private final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9;
 
     protected boolean mAddressRequested;
     protected String mAddressOutput;
@@ -60,6 +65,7 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mResultReceiver = new AddressResultReceiver(new Handler());
         mAddressRequested = true;
@@ -76,18 +82,75 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
 
         // connect to google services
         createGoogleApiClient();
+        createLocationRequest();
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    @Override
+    public void onConnected(Bundle connectionHint) {
+
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                ==PackageManager.PERMISSION_GRANTED){
+            mLastLocation =
+                    LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            updateUI();
+        } else {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+                // MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    updateUI();
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // store map object for use once location is available
@@ -95,37 +158,93 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
     }
 
 
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED){
-            mLastLocation =
-                    LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
+    public void updateUI() {
+        if (mLastLocation == null) {
+            // get location updates
+            startLocationUpdates();
+        } else {
 
-        if (mLastLocation != null) {
-            Log.d("LOCATION", mLastLocation.toString());
-
-            setMap();
+            // initiate geocode request
             if (mAddressRequested) {
                 startIntentService();
             }
 
             mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
             mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+
+//            setMap();
+
+            LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            mMap.setMinZoomPreference(10); // zoom to city level
+            mMap.addMarker(new MarkerOptions().position(myLocation)
+                    .title("My current location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+        }
+    }
+
+//    public void setMap() {
+//        LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+//        mMap.setMinZoomPreference(10); // zoom to city level
+//        mMap.addMarker(new MarkerOptions().position(myLocation)
+//                .title("My current location"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+//
+//    }
+
+
+    /**
+     * Shows a toast with the given text.
+     */
+    protected void showToast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        showToast("Connection failed.");
+    }
+
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        if (i == CAUSE_SERVICE_DISCONNECTED) {
+            showToast("Disconnected. Please re-connect.");
+        } else if (i == CAUSE_NETWORK_LOST) {
+            showToast("Network lost. Please re-connect.");
         }
     }
 
 
-    public void setMap() {
-        LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-        mMap.setMinZoomPreference(10); // zoom to city level
-        mMap.addMarker(new MarkerOptions().position(myLocation)
-                .title("My current location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
-
+    protected synchronized void createGoogleApiClient() {
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
     }
 
+    protected void createLocationRequest() {
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+    }
+
+    protected void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                ==PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        mLastLocation = location;
+        updateUI();
+    }
 
 
     /**
@@ -147,34 +266,6 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
         // service kills itself automatically once all intents are processed.
         startService(intent);
     }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        if (i == CAUSE_SERVICE_DISCONNECTED) {
-            showToast("Disconnected. Please re-connect.");
-        } else if (i == CAUSE_NETWORK_LOST) {
-            showToast("Network lost. Please re-connect.");
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult result) {
-        Log.d("LOCATION", "connection failed: ");
-        showToast("Connection failed.");
-    }
-
-
-    protected synchronized void createGoogleApiClient() {
-        // Create an instance of GoogleAPIClient.
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        }
-    }
-
 
 
     /**
@@ -205,17 +296,19 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
         }
     }
 
-    /**
-     * Shows a toast with the given text.
-     */
-    protected void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
+    }
+
+
+
 
     protected void onStop() {
         super.onStop();

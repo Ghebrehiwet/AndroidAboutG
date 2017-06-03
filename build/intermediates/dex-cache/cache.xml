@@ -16,8 +16,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ad8388186fbc809ed3a06c3dc01ae48e40b5cc2d">
+        sha1="34b26b72acb6ad7e32321a6a31c43a112b8fa0dc">
         <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a1bddff0615805e77e11ef7c758c2bd3ce03e1a1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Fiori\.android\build-cache\fcebf7186d566e43b6bcca5db1bb24844c39b395\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2f2f16fde0c662116f735951b4e830afba373cc6">
+        <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_db3cdea398bcab7bce00023f72f2abd63891beda\classes.dex" />
     </item>
 
 </items>
