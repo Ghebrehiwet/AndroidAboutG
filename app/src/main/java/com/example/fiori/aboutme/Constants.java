@@ -13,7 +13,7 @@ public final class Constants {
     public static final int FAILURE_RESULT = 1;
 
     public static final String PACKAGE_NAME =
-            "brisksoft.com.ad340";
+            "com.example.fiori.aboutme";
 
     public static final String RECEIVER = PACKAGE_NAME + ".RECEIVER";
 
