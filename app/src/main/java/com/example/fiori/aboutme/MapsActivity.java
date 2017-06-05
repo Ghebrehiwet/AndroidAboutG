@@ -1,6 +1,7 @@
 package com.example.fiori.aboutme;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,7 +13,11 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -22,6 +27,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -32,9 +38,8 @@ import android.os.ResultReceiver;
 import android.os.Handler;
 import android.widget.Toast;
 
-public class MapsActivity extends AppCompatActivity implements ConnectionCallbacks, OnMapReadyCallback, OnConnectionFailedListener, LocationListener {
+public class MapsActivity extends  AppCompatActivity implements ConnectionCallbacks, OnMapReadyCallback, OnConnectionFailedListener, LocationListener {
 
-//    private GoogleMap mMap;
 
     final static int REQUEST_LOCATION = 9;
 
@@ -48,7 +53,6 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
     private GoogleMap mMap;
 
     private final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9;
-
     protected boolean mAddressRequested;
     protected String mAddressOutput;
 
@@ -79,6 +83,9 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+//        MapFragment mapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.map));
+//        mapFragment.getMapAsync(this);
 
         // connect to google services
         createGoogleApiClient();
@@ -171,6 +178,10 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
 
             mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
             mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+
+
+//            Log.d("Test",String.valueOf(mLastLocation.getLatitude()) );
+//            Log.d("Test",String.valueOf(mLastLocation.getLongitude()) );
 
 //            setMap();
 
@@ -316,4 +327,7 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
             mGoogleApiClient.disconnect();
         }
     }
+
+
+
 }
