@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/back"
-    tools:context="com.example.fiori.aboutme.SecondActivity">
+    tools:context=".SecondActivity">
 
     <include layout="@layout/toolbar" />
 

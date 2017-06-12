@@ -1,51 +1,37 @@
 package com.example.fiori.aboutme;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.provider.SyncStateContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import android.os.ResultReceiver;
-import android.os.Handler;
-import android.widget.Toast;
 
-public class MapsActivity extends  AppCompatActivity implements ConnectionCallbacks, OnMapReadyCallback, OnConnectionFailedListener, LocationListener {
-
-
-    final static int REQUEST_LOCATION = 9;
-
-    protected static final String ADDRESS_REQUESTED_KEY = "address-request-pending";
-    protected static final String LOCATION_ADDRESS_KEY = "location-address";
-
+public class MapsActivity extends AppCompatActivity implements ConnectionCallbacks, OnMapReadyCallback, OnConnectionFailedListener, LocationListener {
 
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -66,10 +52,11 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         mResultReceiver = new AddressResultReceiver(new Handler());
         mAddressRequested = true;
@@ -79,28 +66,20 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
         mLongitudeText = (TextView) findViewById(R.id.textLongitude);
         mLocationText = (TextView) findViewById(R.id.textLocation);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // Get the SupportMapFragment and request notification
+        // when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-//        MapFragment mapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.map));
-//        mapFragment.getMapAsync(this);
-
         // connect to google services
         createGoogleApiClient();
         createLocationRequest();
-    }
 
+    }
 
     @Override
     public void onConnected(Bundle connectionHint) {
-
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 ==PackageManager.PERMISSION_GRANTED){
             mLastLocation =
@@ -130,8 +109,6 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
         }
 
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -164,7 +141,6 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
         mMap = googleMap;
     }
 
-
     public void updateUI() {
         if (mLastLocation == null) {
             // get location updates
@@ -179,29 +155,23 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
             mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
             mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
 
-
-//            Log.d("Test",String.valueOf(mLastLocation.getLatitude()) );
-//            Log.d("Test",String.valueOf(mLastLocation.getLongitude()) );
-
-//            setMap();
-
             LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+//            LatLng myLocation = new LatLng(39.008224, -76.8984527);
             mMap.setMinZoomPreference(10); // zoom to city level
-            mMap.addMarker(new MarkerOptions().position(myLocation)
+
+//            MarkerOptions options = new MarkerOptions()
+//                    .title("My current location")
+//                    .position(myLocation);
+//            mMap.addMarker(options);
+            mMap.addMarker(new MarkerOptions()
+                    .position(myLocation)
                     .title("My current location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+
+//            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+//            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
         }
     }
-
-//    public void setMap() {
-//        LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-//        mMap.setMinZoomPreference(10); // zoom to city level
-//        mMap.addMarker(new MarkerOptions().position(myLocation)
-//                .title("My current location"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
-//
-//    }
-
 
     /**
      * Shows a toast with the given text.
@@ -215,7 +185,6 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
         showToast("Connection failed.");
     }
 
-
     @Override
     public void onConnectionSuspended(int i) {
         if (i == CAUSE_SERVICE_DISCONNECTED) {
@@ -224,7 +193,6 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
             showToast("Network lost. Please re-connect.");
         }
     }
-
 
     protected synchronized void createGoogleApiClient() {
         // Create an instance of GoogleAPIClient.
@@ -247,7 +215,8 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
     protected void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 ==PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            LocationServices.FusedLocationApi.requestLocationUpdates(
+                    mGoogleApiClient, mLocationRequest, this);
         }
     }
 
@@ -256,7 +225,6 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
         mLastLocation = location;
         updateUI();
     }
-
 
     /**
      * Creates an intent, adds location data to it as an extra, and starts the intent service for
@@ -277,7 +245,6 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
         // service kills itself automatically once all intents are processed.
         startService(intent);
     }
-
 
     /**
      * Receiver for data sent from FetchAddressIntentService.
@@ -315,18 +282,16 @@ public class MapsActivity extends  AppCompatActivity implements ConnectionCallba
     @Override
     protected void onPause() {
         super.onPause();
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
+        LocationServices.FusedLocationApi.removeLocationUpdates(
+                mGoogleApiClient, this);
     }
-
-
-
-
     protected void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
     }
+
 
 
 
