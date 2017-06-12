@@ -6,6 +6,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.example.fiori.aboutme.R;
+
 /**
  * Created by Fiori on 4/26/2017.
  */

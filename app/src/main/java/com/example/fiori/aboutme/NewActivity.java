@@ -9,10 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.RelativeLayout;
-
-import static com.example.fiori.aboutme.R.styleable.RecyclerView;
-import static com.example.fiori.aboutme.R.styleable.RecyclerView;
 
 public class NewActivity extends AppCompatActivity {
 

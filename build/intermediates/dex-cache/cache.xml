@@ -6,7 +6,7 @@
         jar="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
+        revision="25.0.0"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
         <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_fd7a9328cce4406e1b7e68a37c88e58678c596e8\classes.dex" />
     </item>
@@ -15,8 +15,8 @@
         jar="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="83a5c0520673954ebeed4c06946a3782e1449c82">
+        revision="25.0.0"
+        sha1="6a7fce853d1652ed1bdcca122a33c3aaf94a5b93">
         <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a1bddff0615805e77e11ef7c758c2bd3ce03e1a1\classes.dex" />
     </item>
 
