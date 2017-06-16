@@ -52,7 +52,7 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -66,12 +66,6 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
         mLongitudeText = (TextView) findViewById(R.id.textLongitude);
         mLocationText = (TextView) findViewById(R.id.textLocation);
 
-        // Get the SupportMapFragment and request notification
-        // when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
         // connect to google services
         createGoogleApiClient();
         createLocationRequest();
@@ -81,10 +75,10 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
     @Override
     public void onConnected(Bundle connectionHint) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                ==PackageManager.PERMISSION_GRANTED){
+                == PackageManager.PERMISSION_GRANTED) {
             mLastLocation =
                     LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            updateUI();
+            startGoogleMap();
         } else {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -108,6 +102,14 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
             }
         }
 
+    }
+
+    private void startGoogleMap() {
+        // Get the SupportMapFragment and request notification
+        // when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -139,19 +141,25 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
     public void onMapReady(GoogleMap googleMap) {
         // store map object for use once location is available
         mMap = googleMap;
+        updateUI();
     }
 
     public void updateUI() {
-        if (mLastLocation == null) {
             // get location updates
-            startLocationUpdates();
-        } else {
-
-            // initiate geocode request
-            if (mAddressRequested) {
-                startIntentService();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
             }
+            mLastLocation = LocationServices.FusedLocationApi
+                    .getLastLocation(mGoogleApiClient);
 
+        if (mLastLocation != null) {
             mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
             mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
 
@@ -170,6 +178,10 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
 
 //            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
 //            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+            // initiate geocode request
+            if (mAddressRequested) {
+                startIntentService();
+            }
         }
     }
 
@@ -203,6 +215,7 @@ public class MapsActivity extends AppCompatActivity implements ConnectionCallbac
                     .addApi(LocationServices.API)
                     .build();
         }
+        mGoogleApiClient.connect();
     }
 
     protected void createLocationRequest() {

@@ -3,21 +3,147 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\TEST\.android\build-cache\7398c1082a8f109fc9933a7b67f3eb1d3113c674\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_85fe2d3fa16b5537f0f9c1d961e8779d5e3016bc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\13b4d136d68ad9b47280fa499ec9dc8745c88250\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_573fd68420f2caee17a5437ceca8718ebb405ed4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_fd7a9328cce4406e1b7e68a37c88e58678c596e8\classes.dex" />
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_8a65e30abec657cb536abd5bd66eff24ed7bb45b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\TEST\.android\build-cache\0c152352a5b689ec7c909c4bb4467f3a015976d4\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="6a7fce853d1652ed1bdcca122a33c3aaf94a5b93">
-        <dex dex="C:\Users\Fiori\AndroidStudioProjects\AndroidAboutG\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a1bddff0615805e77e11ef7c758c2bd3ce03e1a1\classes.dex" />
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_dd76a45104bbdf05802fd4c2c1f8cf0f2d868c40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\a423a567308f3f561255d1354208ddc3a7babf95\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9f8d081a2f750b9fe7ec367f19bdd6cafc3f518a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.5.2\ecf534dba3a8446ce84cbb797d314763be212a68\glide-3.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.5.2_87a43a343827a22317ab302bfa104c38da4ab54b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\4202994cc922570acf4bd110ce8f2349c5b0e497\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5fbfffcdad32870b6b4075a0d2be485712445661\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\8f31ce3db48d93c2da73cad62e1ebaa2c571e8fd\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ec65edccae02fde6a6b4b50b5f0f3eb957c49572\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\a7c279796667e6048520b24123a04d0c02dfa985\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a3b3f74fec33a30a27867a3f3de749805e563cde\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\94c714a55cb608c2dc81388ce36ca1ab0c11541b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e9fe16c6a30e4393e02238a4fe7e0123e299339a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_6853de85812871eade3baf0e4be4ad918e6007f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\401788f4d722818d200d08159239571974300a96\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a43d3dbb0d373a69139f0f2ca4561821bb073c29\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\0b36b06a6c780e8d023600a3f82e998d25564f54\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_086c4d56cadd951c760030e819f332a64e784153\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\f4e344d1e2c0e39170732493899cb9fa6279f4f6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_82412168175d9a915b22a22e50758de263e9af8c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4e8339866204c7affcc626a6953d578772fc528e">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_3dca96abd54b38fd55a1045f93673d96c81b1b7d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TEST\.android\build-cache\e83fb99cc9eb5fb0cfbbd4667150494be84473e6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\TEST\Documents\AndroidAboutG-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43d7fca599879e774475f740a9c52b22569c571c\classes.dex" />
     </item>
 
 </items>
